@@ -1,87 +1,248 @@
-# Testing and Debugging MERN Applications
+## MERN Bug Tracker
 
-This assignment focuses on implementing comprehensive testing strategies for a MERN stack application, including unit testing, integration testing, and end-to-end testing, along with debugging techniques.
+A full-stack MERN application for reporting, viewing, updating, and deleting bugs.
+Project includes full testing setup (backend + frontend), debugging tools, and clean error handling.
 
-## Assignment Overview
+# Project Setup
+ 1. Clone the Repository
+git clone <your-repo-url>
+cd <project-folder>
 
-You will:
-1. Set up testing environments for both client and server
-2. Write unit tests for React components and server functions
-3. Implement integration tests for API endpoints
-4. Create end-to-end tests for critical user flows
-5. Apply debugging techniques for common MERN stack issues
+# Backend Setup (server/)
+ Install dependencies
+cd server
+npm install
 
-## Project Structure
+ Start MongoDB
 
-```
-mern-testing/
-├── client/                 # React front-end
-│   ├── src/                # React source code
-│   │   ├── components/     # React components
-│   │   ├── tests/          # Client-side tests
-│   │   │   ├── unit/       # Unit tests
-│   │   │   └── integration/ # Integration tests
-│   │   └── App.jsx         # Main application component
-│   └── cypress/            # End-to-end tests
-├── server/                 # Express.js back-end
-│   ├── src/                # Server source code
-│   │   ├── controllers/    # Route controllers
-│   │   ├── models/         # Mongoose models
-│   │   ├── routes/         # API routes
-│   │   └── middleware/     # Custom middleware
-│   └── tests/              # Server-side tests
-│       ├── unit/           # Unit tests
-│       └── integration/    # Integration tests
-├── jest.config.js          # Jest configuration
-└── package.json            # Project dependencies
-```
+Make sure MongoDB is running locally:
 
-## Getting Started
+Windows (MongoDB Compass or local service)
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week6-Assignment.md` file
-4. Explore the starter code and existing tests
-5. Complete the tasks outlined in the assignment
+Or:
 
-## Files Included
+mongod
 
-- `Week6-Assignment.md`: Detailed assignment instructions
-- Starter code for a MERN application with basic test setup:
-  - Sample React components with test files
-  - Express routes with test files
-  - Jest and testing library configurations
-  - Example tests for reference
+ Create .env file
 
-## Requirements
+Inside server/:
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- npm or yarn
-- Basic understanding of testing concepts
+MONGO_URI=mongodb://127.0.0.1:27017/bugtracker
+PORT=5000
 
-## Testing Tools
+ Start backend server
+npm run dev
 
-- Jest: JavaScript testing framework
-- React Testing Library: Testing utilities for React
-- Supertest: HTTP assertions for API testing
-- Cypress/Playwright: End-to-end testing framework
-- MongoDB Memory Server: In-memory MongoDB for testing
 
-## Submission
+ You should see:
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+Server running on port 5000
+✅ MongoDB connected: 127.0.0.1
 
-1. Complete all required tests (unit, integration, and end-to-end)
-2. Achieve at least 70% code coverage for unit tests
-3. Document your testing strategy in the README.md
-4. Include screenshots of your test coverage reports
-5. Demonstrate debugging techniques in your code
+ Frontend Setup (client/)
+ Install dependencies
+cd client
+npm install
 
-## Resources
+ Start React app
+npm start
 
-- [Jest Documentation](https://jestjs.io/docs/getting-started)
-- [React Testing Library Documentation](https://testing-library.com/docs/react-testing-library/intro/)
-- [Supertest Documentation](https://github.com/visionmedia/supertest)
-- [Cypress Documentation](https://docs.cypress.io/)
-- [MongoDB Testing Best Practices](https://www.mongodb.com/blog/post/mongodb-testing-best-practices) 
+
+The frontend will open at:
+
+http://localhost:3000
+
+ Application Features
+ Users can:
+
+Report new bugs
+
+View all bugs
+
+Update bug status
+
+Delete bugs
+
+See instant updates without refresh
+
+Backend:
+
+Node.js + Express
+
+MongoDB + Mongoose
+
+Clean API routes
+
+Error handling middleware
+
+Frontend:
+
+React + React Router
+
+Axios for API requests
+
+Material UI
+
+Centralized API service
+
+Components:
+
+BugList
+
+AddBug
+
+Navbar
+
+ErrorBoundary
+
+Testing Guide
+
+This project includes tests for both backend and frontend.
+
+ Backend Testing
+Install testing dependencies:
+npm install --save-dev jest supertest jest-mock
+
+ Run backend tests:
+npm test
+
+ Backend tests include:
+ Unit Tests
+
+Validation helper functions
+
+Status update logic
+
+Error handlers
+
+✔ Integration Tests
+
+POST /api/bugs — create bug
+
+GET /api/bugs — fetch bugs
+
+PUT /api/bugs/:id — update bug
+
+DELETE /api/bugs/:id — delete bug
+
+✔ Mocking
+
+Database calls mocked with jest-mock
+
+No real MongoDB required during tests
+
+ Frontend Testing
+ Install testing libraries:
+
+(Already installed)
+
+"@testing-library/react"
+"@testing-library/jest-dom"
+
+ Run frontend tests:
+npm test
+
+ Frontend tests include:
+Unit Tests
+
+Form input validation
+
+Button clicks
+
+Component rendering
+
+ Integration Tests
+
+API call mocking using jest.fn()
+
+UI updates after creating or deleting a bug
+
+Loading, empty, and error states
+
+ Debugging Techniques Used
+✅ 1. Console Debugging
+
+console.log() in backend controllers
+
+Logs inside React components
+
+Axios error logging
+
+✅ 2. Chrome DevTools
+
+Check network API calls
+
+Inspect React components
+
+Track re-renders
+
+✅ 3. Node.js Inspector
+
+Run backend with inspector:
+
+node --inspect src/server.js
+
+✅ 4. Custom Error Boundaries
+
+Frontend includes <ErrorBoundary>:
+
+Catches component crashes
+
+Prevents entire UI from breaking
+
+✅ 5. Express Error Middleware
+
+Backend has global error handler:
+
+Catches async route errors
+
+Sends JSON error messages
+
+Clean structured error output
+
+✅ Testing Approach & Coverage
+ Testing Philosophy
+
+Test behavior, not implementation
+
+Isolated unit tests for logic
+
+Integration tests for full request/response cycles
+
+Mock all external dependencies
+
+Coverage Includes
+
+All routes
+
+All components
+
+Error states
+
+Successful CRUD operations
+
+Form interactions
+
+Mocked API responses
+
+Goal: 80%+ coverage on both client and server (recommended)
+
+ Running the entire project
+✅ 1. Start backend
+cd server
+npm run dev
+
+✅ 2. Start frontend
+cd client
+npm start
+
+
+✅ Conclusion
+
+This project demonstrates:
+✔ MERN stack mastery
+✔ API + UI integration
+✔ Real-world testing
+✔ Debugging skills
+✔ Clean documentation
+✔ Fully working CRUD system
